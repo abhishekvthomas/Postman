@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "84de8928-3d79-47b7-b4ad-8f39be9c1647",
+		"name": "E18/0985_AbhishekThomas_Assignment2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetUsers",
+			"item": [
+				{
+					"name": "getUsersAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7125de64-9df1-460c-b403-8980a4fc599e",
+								"exec": [
+									"pm.test(\"Verify response headers and status\", function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"    pm.response.to.have.header(\"content-type\");\r",
+									"    pm.expect(pm.response.headers.get('content-type')).to.eql('application/json; charset=utf-8');\r",
+									" });\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"    pm.test(\"Verify repsonse body parameters\", function(){\r",
+									"    pm.expect(jsonData).to.have.property(\"login\");\r",
+									"    pm.expect(jsonData.login).to.eql(\"torvalds\");\r",
+									"    pm.expect(jsonData).to.have.property(\"html_url\");\r",
+									"    pm.expect(jsonData.html_url).to.eql(\"https://github.com/torvalds\");\r",
+									"    pm.expect(jsonData.public_repos).to.be.above(1);\r",
+									"    console.log(\"Public repos = \"+jsonData.public_repos);\r",
+									" });\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api.github.com/users/{{userName}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"users",
+								"{{userName}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GetUserFollowers",
+			"item": [
+				{
+					"name": "getUserFollowersApi",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96724b54-b6ef-436e-b3cd-e5eea8477c63",
+								"exec": [
+									"//Q9\r",
+									"var data = JSON.parse(responseBody);\r",
+									"pm.test(\"Verify repsonse body parameters\", function(){\r",
+									"pm.expect(data.length).to.eql(30);\r",
+									"pm.expect(data[0].login).to.eql(\"jeycin\");\r",
+									"pm.expect(data[29].login).to.eql(\"crafterm\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/users/torvalds/followers",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"users",
+								"torvalds",
+								"followers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Avatar",
+			"item": [
+				{
+					"name": "Avatar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "be22acbe-c423-464c-9c8c-9e000a64b4bd",
+								"exec": [
+									"//Q10\r",
+									"pm.test(\"Content-Type header is present\", function () {\r",
+									"   pm.expect(pm.response.headers.get('Content-Type')).to.eql('image/jpeg');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://avatars0.githubusercontent.com/u/1024025?v=4",
+							"protocol": "https",
+							"host": [
+								"avatars0",
+								"githubusercontent",
+								"com"
+							],
+							"path": [
+								"u",
+								"1024025"
+							],
+							"query": [
+								{
+									"key": "v",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

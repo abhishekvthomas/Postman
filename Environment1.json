@@ -1,0 +1,34 @@
+{
+	"id": "90364fdd-a8a7-4faf-9a70-4545207703d1",
+	"name": "Environment1",
+	"values": [
+		{
+			"key": "ImageUrl",
+			"value": "https://avatars0.githubusercontent.com/u/1809948?v=4",
+			"enabled": true
+		},
+		{
+			"key": "userName",
+			"value": "torvalds",
+			"enabled": true
+		},
+		{
+			"key": "cityName",
+			"value": "Jaipur",
+			"enabled": true
+		},
+		{
+			"key": "appId",
+			"value": "1e39aa661ac4f86216b072251cdc8fa6",
+			"enabled": true
+		},
+		{
+			"key": "cityId",
+			"value": "123",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-11-17T11:18:25.221Z",
+	"_postman_exported_using": "Postman/7.34.0"
+}

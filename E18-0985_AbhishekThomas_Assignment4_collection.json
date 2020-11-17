@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "932a05e7-c825-452c-8cc5-ebc6908e6773",
+		"name": "E18/0985_AbhishekThomas_Assignment4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://openweathermap.org/api",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "246b05f8-87ed-428a-8469-abefc97bd13f",
+						"exec": [
+							"pm.environment.set(\"cityId\", 123);\r",
+							"var cityIdDefault = pm.environment.get(\"cityId\");\r",
+							"console.log(\"city Id default value =\" +cityIdDefault);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9aaf05e5-0b11-4c76-971c-0cf567dcc516",
+						"exec": [
+							"var response = pm.response.json();\r",
+							"console.log(\"Id of City \"+response.name+ \" is \"+response.id);\r",
+							" pm.expect(response.coord.lon).to.eql(75.82);\r",
+							" pm.expect(response.coord.lat).to.eql(26.92);\r",
+							" pm.environment.set(\"cityId\", response.id);\r",
+							" console.log(\"City Id after executing = \" +pm.environment.get(\"cityId\"));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "EXk04cJIKVyCw63AU59j-VQLb4xVcah6WLY/BFx/O",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APiKey",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q={{cityName}}&APPID={{appId}}",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{cityName}}"
+						},
+						{
+							"key": "APPID",
+							"value": "{{appId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
